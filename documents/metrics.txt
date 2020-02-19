@@ -1,0 +1,19 @@
+Time to enter each digit (ms) measured from the acceptance of the previous digit to the acceptance of the current digit
+
+Total time for PIN entry (ms) measured from beginning of PIN entry time to acceptance of the last digit.
+
+Movement time for each PIN entry as a Fitts' Law Task necessary measurements for this include
+- Saccade amplitude measured in pixels
+- distance on PIN pad (can be calculated directly from UI elements)
+
+Mesurement of fixation including:
+- Centroid of fixation
+- Time of fixation
+- Fixation duration
+As well as information on how fixation is detected (dispertion vs. velocity based filter)
+
+Complimentary metrics
+- Sampling rate of the device
+- Measure of calibration accuracy
+- Visual representation of gaze movement
+
