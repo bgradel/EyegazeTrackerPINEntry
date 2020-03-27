@@ -1,7 +1,10 @@
-from Window import *
+import Window
 from Pin import *
 
 class Luncher:
-    counter = 0
-    def main(self):
-        window = Window()
+    if __name__ == "__main__":
+        root = Tk()
+        root.geometry("2000x2000")
+        app = Window.Window(root)
+        pin = Pin()
+        root.mainloop()

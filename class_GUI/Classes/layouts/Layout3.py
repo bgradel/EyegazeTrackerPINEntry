@@ -4,9 +4,9 @@ class Layout3:
     buttonList = []
     counter = 1
 
-    def __init__(self,root,bList):
-        self.root = root
+    def __init__(self,bList):
         self.buttonList = bList
+        self.placeButton()
 
     def placeButton(self):
         for i in range(2):

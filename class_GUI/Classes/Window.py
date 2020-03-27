@@ -1,31 +1,42 @@
 from layouts.LayoutManager import*
-from Buttons import*
-
 class Window:
-    root = Tk()
+
     size = "2000x2000"
-    counter = None
+    counter = 1
+    welcomPage = None
+    newFrames = None
+    num = 0
 
-    frame1 = LabelFrame(root)
-    frame2 = LabelFrame(root)
-    frame3 = LabelFrame(root)
+    def __init__(self, parent):
+        """Constructor"""
+        self.root = parent
+        self.root.title("Main frame")
+        self.welcomPage = Frame(parent,padx=50,pady=50)
+        self.welcomPage.pack(padx=10,pady=10)
+        self.LOM = LayoutManager()
+        startButton = Button(self.welcomPage, text = "Start", command=lambda:self.start())
+        startButton.pack()
 
-    frames = [frame1,frame2,frame3]
+    def handler(self):
 
-    screenHeight = root.winfo_screenheight()
-    screenWidth = root.winfo_screenwidth()
+        self.newFrames = Frame(self.root, height=2000, width=2000)
+        self.newFrames.pack()
+        self.LOM.getLay1(self.newFrames, self)
 
-    root.geometry(size)
 
+    def start(self):
+        self.welcomPage.destroy()
+        self.handler()
+    # ---------------   -------------------------------------------------------
 
-    button = Buttons(root)
-    button.creatButtons()
-    buttonList = button.buttonList
+    def change(self):
+        self.newFrames.destroy()
+        self.newFrames2 = Frame(self.root, height=2000, width=2000)
+        self.newFrames2.pack()
+        self.LOM.getLay2(self.newFrames2, self)
 
-    LM = LayoutManager(frames,buttonList)
-    LM.getLay2()
-
-    #LM.getLay1()
-
-    root.mainloop()
-
+    def changeAgain(self):
+        self.newFrames2.destroy()
+        self.newFrames3 = Frame(self.root, height=2000, width=2000)
+        self.newFrames3.pack()
+        self.LOM.getLay3(self.newFrames3, self)
