@@ -1,10 +1,13 @@
 import Window
-from Pin import *
+from Tkinter import *
+import threading
 
 class Luncher:
     if __name__ == "__main__":
         root = Tk()
-        root.geometry("2000x2000")
+        width = root.winfo_screenwidth()
+        height = root.winfo_screenheight()
+        size = str(width) + 'x' + str(height)
+        root.geometry(size)
         app = Window.Window(root)
-        pin = Pin()
         root.mainloop()
