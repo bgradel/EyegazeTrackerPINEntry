@@ -20,6 +20,7 @@ class LayoutManager:
         buttons = button2.creatButtons(root)
         l2 = Layout2(buttons,width, height)
 
+
     def getLay3(self, root, obj):
         button3 = Buttons(obj,3, self.timer)
         buttons = button3.creatButtons(root)

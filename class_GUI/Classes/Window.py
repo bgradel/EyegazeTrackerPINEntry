@@ -27,8 +27,8 @@ class Window:
     def handler(self):
 
         self.LOM = LayoutManager()
-        self.newFrames = Frame(self.root, height=100,background="red", width=100)
-        self.newFrames.pack( padx=20, pady=200)
+        self.newFrames = Frame(self.root, height=100, width=130)
+        self.newFrames.pack( padx=20, pady=280)
         self.LOM.getLay1(self.newFrames, self)
 
 
@@ -45,7 +45,7 @@ class Window:
 
     def changeAgain(self):
         self.newFrames2.destroy()
-        self.newFrames3 = Frame(self.root,  height=100,background="red", width=100)
+        self.newFrames3 = Frame(self.root,  height=130, width=130)
         self.newFrames3.pack( padx=20, pady=400)
         self.LOM.getLay3(self.newFrames3, self)
 

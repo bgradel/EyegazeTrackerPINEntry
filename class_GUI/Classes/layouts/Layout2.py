@@ -10,7 +10,7 @@ class Layout2:
 
 
     def __init__(self, bList,width, height):
-        self.width = width/2
+        self.width = width/2.1
         self.height = height//2.5
         print self.width,self.height
         self.buttonList = bList
@@ -20,8 +20,8 @@ class Layout2:
     def calcu(self):
         win_x = self.width
         win_y = self.height
-        length = 400
-        error = 22
+        length = 403
+        error = 28
 
         xx = int(length * math.sin((15 * math.pi) / 180))
         yy = int(length * math.cos((15 * math.pi) / 180))

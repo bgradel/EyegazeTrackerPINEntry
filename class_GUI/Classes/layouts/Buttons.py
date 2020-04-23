@@ -5,7 +5,8 @@ from Classes.Window import *
 
 
 class Buttons:
-    size = 75
+    size = 170
+    bsize = size-15
     padding = 0
     font = "Time New Roman"
 
@@ -20,7 +21,7 @@ class Buttons:
         buttonList = []
 
         for i in range(10):
-            b = Button(root, image = self.photo,text = str(i), width = 150, height = 150, compound = CENTER, borderwidth=2, relief = SOLID, font=(self.font, self.size),
+            b = Button(root, image = self.photo,text = str(i), width = self.size, height = self.size, compound = CENTER, borderwidth=2, relief = SOLID, font=(self.font, self.bsize),
                             command=lambda a=i: self.click(a))
             buttonList.append(b)
         return buttonList

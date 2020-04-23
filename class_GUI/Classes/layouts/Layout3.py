@@ -13,7 +13,7 @@ class Layout3:
         for i in range(2):
             for j in range(5):
                 if self.counter <= 9:
-                    self.buttonList[self.counter].grid(row=i, column=j,padx=5,pady=5)
+                    self.buttonList[self.counter].grid(row=i, column=j,padx=1,pady=1)
                     self.counter += 1
                 else:
-                    self.buttonList[0].grid(row=i, column=j)
+                    self.buttonList[0].grid(row=i, column=j,padx=1,pady=1)
