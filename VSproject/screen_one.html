@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="pin-login/pin-login.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>screen one</h1>
+    </div>
+    <div class="display_box">
+        <div class="pin-login" id="secPinLogin">
+        <input type="password" readonly class="pin-login__text">
+        <div class="pin-login__numpad">
+            
+        </div>
+    </div>
+    </div>
+    
+    <script src="pin-login/pin-login.js"></script>
+    <script>
+        new PinLogin({
+            el: document.getElementById("secPinLogin"), 
+            pageinfo: "second",
+            redirectTo: "screen_two.html",
+            maxNumbers: 4
+        });
+    </script>
+    
+</body>
+</html>
