@@ -72,18 +72,18 @@ class PinLogin {
 
     _generatePad3(){
         const padLayout = [
-            "1", "2", "3",
+            "0","1", "2", "3",
             "4", "5", "6",
             "7", "8", "9",
-            ,"0"
+            
         ];
-
-        const coord = [["100px","100px"],["200px","200px"],["300px","300px"],["400px","400px"],["400px","400px"],["200px","200px"],["200px","200px"],["200px","200px"],["200px","200px"],["200px","200px"],["200px","200px"]]
+        
+        const coord = [["853px","853px"],["629px","982px"],["371px","982px"],["147px","853px"],["18px","371px"],["18px","629px"],["147px","147px"],["371px","18px"],["629px","18px"],["853px","147px"]]
         
         var i = 0;
         padLayout.forEach(key => {
             
-            i = i + 1;
+            
             console.log(i);
             console.log(coord[i][1]);
             const keyEl = document.createElement("div");
@@ -96,7 +96,7 @@ class PinLogin {
             keyEl.style.cssText = "position:fixed; color: red";
             keyEl.style.left = coord[i][0];
             keyEl.style.top =  coord[i][1];
-
+            i = i + 1;
         });
 
     }
