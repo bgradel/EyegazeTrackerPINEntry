@@ -1,0 +1,327 @@
+{
+  "components": {
+    "1": {
+      "id": "1",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>Document</title>\r\n    <link href=\"pin-login/pin-login.css\" rel=\"stylesheet\">\r\n</head>\r\n<body>\r\n    <div>\r\n        <h1>live server</h1>\r\n    </div>\r\n    <div class=\"display_box\">\r\n        <div class=\"pin-login\" id=\"mainPinLogin\">\r\n        <input type=\"password\" readonly class=\"pin-login__text\">\r\n        <div class=\"pin-login__numpad\">\r\n            \r\n        </div>\r\n    </div>\r\n    </div>\r\n    \r\n    <script src=\"pin-login/pin-login.js\"></script>\r\n    <script>\r\n        console.log(\"In script\")\r\n        new PinLogin({\r\n            el: document.getElementById(\"mainPinLogin\"), \r\n            pageinfo: \"first\",\r\n            redirectTo: \"screen_one.html\",\r\n            maxNumbers: 4\r\n        });\r\n    </script>\r\n</body>\r\n</html>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "pin-login.js",
+              "message": "run",
+              "code": "class PinLogin {\r\n    constructor ({el, pageinfo, redirectTo, maxNumbers = Infinity}) {\r\n        console.log(\"made Pin Login\")\r\n        this.el = {\r\n            main: el,\r\n            numPad: el.querySelector(\".pin-login__numpad\"),\r\n            textDisplay: el.querySelector(\".pin-login__text\")\r\n        };\r\n\r\n        this.pageinfo = pageinfo;\r\n        this.redirectTo = redirectTo;\r\n        this.maxNumbers = maxNumbers;\r\n        this.value = \"\";\r\n        \r\n        if (pageinfo == \"first\"){\r\n            this._generatePad1()\r\n        }else if (pageinfo == \"second\"){\r\n            this._generatePad2()\r\n        }else if (pageinfo == \"third\"){\r\n            this._generatePad3()\r\n        }\r\n        \r\n    }\r\n\r\n    _generatePad1() {\r\n        const padLayout = [\r\n            \"1\", \"2\", \"3\",\r\n            \"4\", \"5\", \"6\",\r\n            \"7\", \"8\", \"9\",\r\n            ,\"0\"\r\n        ];\r\n\r\n        padLayout.forEach(key => {\r\n            const insertBreak = key.search(/[369]/) !== -1;\r\n            const keyEl = document.createElement(\"div\");\r\n\r\n            keyEl.classList.add(\"pin-login__key\");\r\n            keyEl.classList.toggle(\"material-icons\", isNaN(key));\r\n            keyEl.textContent = key;\r\n            keyEl.addEventListener(\"click\", () => { this._handleKeyPress(key) });\r\n            this.el.numPad.appendChild(keyEl);\r\n\r\n            if (insertBreak) {\r\n                this.el.numPad.appendChild(document.createElement(\"br\"));\r\n            }\r\n        });\r\n    }\r\n\r\n    _generatePad2(){\r\n        const padLayout = [\r\n            \"1\", \"2\", \"3\",\r\n            \"4\", \"5\", \"6\",\r\n            \"7\", \"8\", \"9\",\r\n            ,\"0\"\r\n        ];\r\n\r\n        padLayout.forEach(key => {\r\n            const insertBreak = key.search(/[5]/) !== -1;\r\n            const keyEl = document.createElement(\"div\");\r\n\r\n            keyEl.classList.add(\"pin-login__key\");\r\n            keyEl.classList.toggle(\"material-icons\", isNaN(key));\r\n            keyEl.textContent = key;\r\n            keyEl.addEventListener(\"click\", () => { this._handleKeyPress(key) });\r\n            this.el.numPad.appendChild(keyEl);\r\n\r\n            if (insertBreak) {\r\n                this.el.numPad.appendChild(document.createElement(\"br\"));\r\n            }\r\n        });\r\n\r\n    }\r\n\r\n    _generatePad3(){\r\n        const padLayout = [\r\n            \"0\",\"1\", \"2\", \"3\",\r\n            \"4\", \"5\", \"6\",\r\n            \"7\", \"8\", \"9\",\r\n            \r\n        ];\r\n        \r\n        const coord = [[\"853px\",\"853px\"],[\"629px\",\"982px\"],[\"371px\",\"982px\"],[\"147px\",\"853px\"],[\"18px\",\"371px\"],[\"18px\",\"629px\"],[\"147px\",\"147px\"],[\"371px\",\"18px\"],[\"629px\",\"18px\"],[\"853px\",\"147px\"]]\r\n        \r\n        var i = 0;\r\n        padLayout.forEach(key => {\r\n            \r\n            \r\n            console.log(i);\r\n            console.log(coord[i][1]);\r\n            const keyEl = document.createElement(\"div\");\r\n\r\n            keyEl.classList.add(\"pin-login__key\");\r\n            keyEl.classList.toggle(\"material-icons\", isNaN(key));\r\n            keyEl.textContent = key;\r\n            keyEl.addEventListener(\"click\", () => { this._handleKeyPress(key) });\r\n            this.el.numPad.appendChild(keyEl);\r\n            keyEl.style.cssText = \"position:fixed; color: red\";\r\n            keyEl.style.left = coord[i][0];\r\n            keyEl.style.top =  coord[i][1];\r\n            i = i + 1;\r\n        });\r\n\r\n    }\r\n\r\n\r\n    _handleKeyPress(key){\r\n        if (this.value.length < this.maxNumbers && !isNaN(key)){\r\n            this.value += key;\r\n        }\r\n        console.log(this.value)\r\n        this._updateValueText();\r\n    }\r\n\r\n    _updateValueText(){\r\n        this.el.textDisplay.value = this.value;\r\n        this.el.textDisplay.classList.remove(\"pin-login__text--error\")\r\n        if (this.value.length == 4){\r\n            this._attemptLogin()\r\n        }\r\n    }\r\n\r\n    _attemptLogin(){\r\n        if (this.value == \"0404\"){\r\n            console.log(\"you got in!\")\r\n            window.location.href = this.redirectTo;\r\n        }else{\r\n            console.log(\"get out of here\")\r\n            this.el.textDisplay.classList.add(\"pin-login__text--error\")\r\n            this.value = this.value.substring(0, this.value.length - 4);\r\n        }\r\n    }\r\n\r\n}\r\n\r\nconsole.log(\"Instantiate\")\r\nnew PinLogin({\r\n  el: document.getElementById(\"mainPinLogin\"), \r\n  pageinfo: \"first\",\r\n  redirectTo: \"screen_one.html\",\r\n  maxNumbers: 4\r\n});\r\nconsole.log(\"after\")"
+            }
+          ]
+        ]
+      },
+      "title": "Index",
+      "_tab": "Scripts",
+      "plugins": [
+        {
+          "type": "mousetrap",
+          "mode": "mousetrap"
+        },
+        {
+          "type": "fullscreen"
+        }
+      ]
+    },
+    "2": {
+      "id": "2",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "required": true,
+              "type": "html",
+              "content": "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <link href=\"pin-login/pin-login.css\" rel=\"stylesheet\">\r\n    <title>Document</title>\r\n</head>\r\n<body>\r\n    <div>\r\n        <h1>screen one</h1>\r\n    </div>\r\n    <div class=\"display_box\">\r\n        <div class=\"pin-login\" id=\"secPinLogin\">\r\n        <input type=\"password\" readonly class=\"pin-login__text\">\r\n        <div class=\"pin-login__numpad\">\r\n            \r\n        </div>\r\n    </div>\r\n    </div>\r\n    \r\n    <script src=\"pin-login/pin-login.js\"></script>\r\n    <script>\r\n        new PinLogin({\r\n            el: document.getElementById(\"secPinLogin\"), \r\n            pageinfo: \"second\",\r\n            redirectTo: \"screen_two.html\",\r\n            maxNumbers: 4\r\n        });\r\n    </script>\r\n   \r\n</body>\r\n<footer>\r\n  <h1> Press Space to Continue </h1>\r\n</footer>\r\n</html>"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "hidden",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "continue",
+            "click",
+            "button",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "Index_html",
+      "_tab": "Content",
+      "plugins": [
+        {
+          "type": "mousetrap",
+          "mode": "mousetrap"
+        },
+        {
+          "type": "fullscreen"
+        }
+      ]
+    },
+    "8": {
+      "id": "8",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <link href=\"pin-login/pin-login.css\" rel=\"stylesheet\">\n    <title>Document</title>\n</head>\n<body>\n    <div>\n        <h1>screen one</h1>\n    </div>\n    <div class=\"display_box\">\n        <div class=\"pin-login\" id=\"secPinLogin\">\n        <input type=\"password\" readonly class=\"pin-login__text\">\n        <div class=\"pin-login__numpad\">\n            \n        </div>\n    </div>\n    </div>\n    \n    <script src=\"pin-login/pin-login.js\"></script>\n    <script>\n        new PinLogin({\n            el: document.getElementById(\"secPinLogin\"), \n            pageinfo: \"second\",\n            redirectTo: \"screen_two.html\",\n            maxNumbers: 4\n        });\n    </script>\n    \n</body>\n<footer class=\"content-horizontal-right\">\n  <button id=\"continue\">Continue &rarr;</button>\n</footer>\n</html>",
+              "title": "screen_one.html"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": [
+          [
+            {
+              "localPath": "screen_one.html",
+              "poolPath": "embedded/80bb8e754a13237cdc9c993d6adadd11087c644a19a91de2b5ed184c0b08ab66.html"
+            }
+          ]
+        ]
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "screen_one.html",
+      "_tab": "Behavior"
+    },
+    "9": {
+      "id": "9",
+      "type": "lab.html.Page",
+      "items": {
+        "rows": [
+          [
+            {
+              "type": "text",
+              "content": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <link href=\"pin-login/pin-login.css\" rel=\"stylesheet\">\n    <title>Document</title>\n</head>\n<body>\n    <div>\n        <h1>screen one</h1>\n    </div>\n    <div class=\"display_box\">\n        <div class=\"pin-login\" id=\"secPinLogin\">\n        <input type=\"password\" readonly class=\"pin-login__text\">\n        <div class=\"pin-login__numpad\">\n            \n        </div>\n    </div>\n    </div>\n    \n    <script src=\"pin-login/pin-login.js\"></script>\n    <script>\n        new PinLogin({\n            el: document.getElementById(\"secPinLogin\"), \n            pageinfo: \"third\",\n            redirectTo: \"screen_two.html\",\n            maxNumbers: 4\n        });\n    </script>\n    \n</body>\n</html>",
+              "title": "screen_two.html"
+            }
+          ]
+        ]
+      },
+      "scrollTop": true,
+      "submitButtonText": "Continue →",
+      "submitButtonPosition": "right",
+      "files": {
+        "rows": []
+      },
+      "responses": {
+        "rows": [
+          [
+            "",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "messageHandlers": {
+        "rows": [
+          [
+            {
+              "title": "",
+              "message": "",
+              "code": ""
+            }
+          ]
+        ]
+      },
+      "title": "screen_two.html",
+      "_tab": "Content"
+    },
+    "root": {
+      "id": "root",
+      "title": "root",
+      "type": "lab.flow.Sequence",
+      "children": [
+        "1",
+        "2",
+        "8",
+        "9"
+      ],
+      "parameters": {
+        "rows": [
+          [
+            {
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        ]
+      },
+      "plugins": [
+        {
+          "type": "lab.plugins.Metadata"
+        }
+      ],
+      "metadata": {
+        "title": "",
+        "description": "",
+        "repository": "",
+        "contributors": ""
+      }
+    }
+  },
+  "version": [
+    20,
+    0,
+    1
+  ],
+  "files": {
+    "files": {
+      "index.html": {
+        "content": "data:text/html,%3C!doctype%20html%3E%0A%3Chtml%3E%0A%3Chead%3E%0A%20%20%3Cmeta%20charset%3D%22utf-8%22%3E%0A%20%20%3Ctitle%3EExperiment%3C%2Ftitle%3E%0A%20%20%3C!--%20viewport%20setup%20--%3E%0A%20%20%3Cmeta%20name%3D%22viewport%22%20content%3D%22width%3Ddevice-width%2C%20initial-scale%3D1%22%3E%0A%20%20%3C!--%20lab.js%20library%20and%20experiment%20code%20--%3E%0A%20%20%24%7B%20header%20%7D%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%20%20%3C!--%20If%20you'd%20rather%20have%20a%20container%20with%20a%20fixed%20width%0A%20%20%20%20%20%20%20and%20variable%20height%2C%20try%20removing%20the%20fullscreen%20class%20below%20--%3E%0A%20%20%3Cdiv%20class%3D%22container%20fullscreen%22%20data-labjs-section%3D%22main%22%3E%0A%20%20%20%20%3Cmain%20class%3D%22content-vertical-center%20content-horizontal-center%22%3E%0A%20%20%20%20%20%20%3Cdiv%3E%0A%20%20%20%20%20%20%20%20%3Ch2%3ELoading%20Experiment%3C%2Fh2%3E%0A%20%20%20%20%20%20%20%20%3Cp%3EThe%20experiment%20is%20loading%20and%20should%20start%20in%20a%20few%20seconds%3C%2Fp%3E%0A%20%20%20%20%20%20%3C%2Fdiv%3E%0A%20%20%20%20%3C%2Fmain%3E%0A%20%20%3C%2Fdiv%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E%0A",
+        "source": "library"
+      },
+      "style.css": {
+        "content": "data:text/css,%2F*%20Please%20define%20your%20custom%20styles%20here%20*%2Fbody%20%7B%0D%0A%20%20%20%20margin%3A%200%3B%0D%0A%20%20%20%20height%3A%20100%25%3B%0D%0A%7D%0D%0A%0D%0A%0D%0A.pin-login%7B%0D%0A%20%20%20%20display%3A%20inline-block%3B%0D%0A%20%20border-radius%3A%2010px%3B%0D%0A%20%20padding%3A%2010px%3B%0D%0A%20%20font-size%3A%2028px%3B%0D%0A%20%20background%3A%20%23d9deff%3B%0D%0A%20%20border%3A%201px%20solid%20%23363b5e%3B%0D%0A%20%20user-select%3A%20none%3B%0D%0A%20%20-moz-user-select%3A%20none%3B%0D%0A%20%20-ms-user-select%3A%20none%3B%0D%0A%20%20-webkit-user-select%3A%20none%3B%0D%0A%20%20font-family%3A%20sans-serif%3B%0D%0A%20%20margin%3A%20auto%3B%0D%0A%7D%0D%0A%0D%0A.display_box%7B%0D%0A%20%20%20%20display%3A%20flex%3B%0D%0A%20%20%20%20justify-content%3A%20center%3B%0D%0A%20%20%20%20align-items%3A%20center%3B%0D%0A%20%20%20%20height%3A%20100%25%3B%0D%0A%7D%0D%0A%0D%0A.pin-login__text%7B%0D%0A%20%20%20%20margin%3A%2010px%20auto%2010px%20auto%3B%0D%0A%20%20%20%20display%3A%20block%3B%0D%0A%0D%0A%20%20%20%20width%3A%2050%25%3B%0D%0A%20%20%20%20font-size%3A%200.5em%3B%0D%0A%20%20%20%20text-align%3A%20center%3B%0D%0A%20%20%20%20letter-spacing%3A%200.2em%3B%0D%0A%20%20%20%20background%3A%20rgba(0%2C0%2C0%2C0.15)%3B%0D%0A%20%20%20%20border%3A%20none%3B%0D%0A%20%20%20%20border-radius%3A%2010px%3B%0D%0A%20%20%20%20cursor%3A%20default%3B%0D%0A%20%20%20%20padding%3A%2010px%3B%0D%0A%7D%0D%0A%0D%0A.pin-login__text--error%7B%0D%0A%20%20%20%20color%3A%20%23990011%3B%0D%0A%20%20%20%20background%3A%20%23ffb3b3%3B%0D%0A%0D%0A%20%20%20%20animation-name%3A%20loginError%3B%0D%0A%20%20%20%20animation-duration%3A%200.1s%3B%0D%0A%20%20%20%20animation-iteration-count%3A%202%3B%0D%0A%0D%0A%0D%0A%7D%0D%0A%0D%0A%40keyframes%20loginError%7B%0D%0A%20%20%20%2025%25%20%7Btransform%3A%20translateX(-3px)%7D%0D%0A%20%20%20%2075%25%20%7Btransform%3A%20translateX(3px)%7D%0D%0A%7D%0D%0A%0D%0A%40-moz-keyframes%20loginError%7B%0D%0A%20%20%20%2025%25%20%7Btransform%3A%20translateX(-3px)%7D%0D%0A%20%20%20%2075%25%20%7Btransform%3A%20translateX(3px)%7D%0D%0A%7D%0D%0A%0D%0A%0D%0A.pin-login__key%7B%0D%0A%20%20%20%20width%3A%2060px%3B%0D%0A%20%20height%3A%2060px%3B%0D%0A%20%20margin%3A%2010px%3B%0D%0A%20%20background%3A%20rgba(0%2C%200%2C%200%2C%200.15)%3B%0D%0A%20%20color%3A%20%23363b5e%3B%0D%0A%0D%0A%20%20display%3A%20inline-flex%3B%0D%0A%20%20align-items%3A%20center%3B%0D%0A%20%20justify-content%3A%20center%3B%0D%0A%20%20font-weight%3A%20bold%3B%0D%0A%20%20cursor%3A%20pointer%3B%0D%0A%0D%0A%7D%0D%0A%0D%0A.pin-login__key%3Aactive%7B%0D%0A%20%20%20%20background%3A%20rgba(0%2C0%2C0%2C0.25)%3B%0D%0A%7D",
+        "source": "library"
+      },
+      "embedded/80bb8e754a13237cdc9c993d6adadd11087c644a19a91de2b5ed184c0b08ab66.html": {
+        "content": "data:text/html;base64,PCFET0NUWVBFIGh0bWw+DQo8aHRtbCBsYW5nPSJlbiI+DQo8aGVhZD4NCiAgICA8bWV0YSBjaGFyc2V0PSJVVEYtOCI+DQogICAgPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPg0KICAgIDxsaW5rIGhyZWY9InBpbi1sb2dpbi9waW4tbG9naW4uY3NzIiByZWw9InN0eWxlc2hlZXQiPg0KICAgIDx0aXRsZT5Eb2N1bWVudDwvdGl0bGU+DQo8L2hlYWQ+DQo8Ym9keT4NCiAgICA8ZGl2Pg0KICAgICAgICA8aDE+c2NyZWVuIG9uZTwvaDE+DQogICAgPC9kaXY+DQogICAgPGRpdiBjbGFzcz0iZGlzcGxheV9ib3giPg0KICAgICAgICA8ZGl2IGNsYXNzPSJwaW4tbG9naW4iIGlkPSJzZWNQaW5Mb2dpbiI+DQogICAgICAgIDxpbnB1dCB0eXBlPSJwYXNzd29yZCIgcmVhZG9ubHkgY2xhc3M9InBpbi1sb2dpbl9fdGV4dCI+DQogICAgICAgIDxkaXYgY2xhc3M9InBpbi1sb2dpbl9fbnVtcGFkIj4NCiAgICAgICAgICAgIA0KICAgICAgICA8L2Rpdj4NCiAgICA8L2Rpdj4NCiAgICA8L2Rpdj4NCiAgICANCiAgICA8c2NyaXB0IHNyYz0icGluLWxvZ2luL3Bpbi1sb2dpbi5qcyI+PC9zY3JpcHQ+DQogICAgPHNjcmlwdD4NCiAgICAgICAgbmV3IFBpbkxvZ2luKHsNCiAgICAgICAgICAgIGVsOiBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgic2VjUGluTG9naW4iKSwgDQogICAgICAgICAgICBwYWdlaW5mbzogInNlY29uZCIsDQogICAgICAgICAgICByZWRpcmVjdFRvOiAic2NyZWVuX3R3by5odG1sIiwNCiAgICAgICAgICAgIG1heE51bWJlcnM6IDQNCiAgICAgICAgfSk7DQogICAgPC9zY3JpcHQ+DQogICAgDQo8L2JvZHk+DQo8L2h0bWw+",
+        "source": "embedded",
+        "checkSum": "80bb8e754a13237cdc9c993d6adadd11087c644a19a91de2b5ed184c0b08ab66"
+      }
+    },
+    "bundledFiles": {
+      "lib/lab.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.js.map": {
+        "type": "text/plain"
+      },
+      "lib/lab.fallback.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.legacy.js": {
+        "type": "application/javascript"
+      },
+      "lib/lab.legacy.js.map": {
+        "type": "text/plain"
+      },
+      "lib/lab.css": {
+        "type": "text/css"
+      },
+      "lib/loading.svg": {
+        "type": "image/svg+xml"
+      }
+    }
+  }
+}
