@@ -26,7 +26,7 @@ class PinLogin {
             "1", "2", "3",
             "4", "5", "6",
             "7", "8", "9",
-            ,"0"
+            ,"00","0"
         ];
 
         padLayout.forEach(key => {
@@ -38,7 +38,10 @@ class PinLogin {
             keyEl.textContent = key;
             keyEl.addEventListener("click", () => { this._handleKeyPress(key) });
             this.el.numPad.appendChild(keyEl);
-
+            if (keyEl.textContent == "00"){
+                this.el.numPad.appendChild(keyEl)
+                keyEl.style.visibility = "hidden"
+            }
             if (insertBreak) {
                 this.el.numPad.appendChild(document.createElement("br"));
             }
@@ -79,7 +82,7 @@ class PinLogin {
         ];
         
         const coord = [["853px","853px"],["629px","982px"],["371px","982px"],["147px","853px"],["18px","371px"],["18px","629px"],["147px","147px"],["371px","18px"],["629px","18px"],["853px","147px"]]
-        
+        const coord_testing = [["1034px","557px"],["698px","637px"],["362px","637px"],["27px","562px"],["-230px","400px"],["-403px","237px"],["-490px","77px"],["-500px","0px"],["-510px","0px"],["-523px","77px"]]
         var i = 0;
         padLayout.forEach(key => {
             
@@ -93,9 +96,9 @@ class PinLogin {
             keyEl.textContent = key;
             keyEl.addEventListener("click", () => { this._handleKeyPress(key) });
             this.el.numPad.appendChild(keyEl);
-            keyEl.style.cssText = "position:fixed; color: red";
-            keyEl.style.left = coord[i][0];
-            keyEl.style.top =  coord[i][1];
+            keyEl.style.cssText = "position:relative; border:1px solid blue;";
+            keyEl.style.left = coord_testing[i][0];
+            keyEl.style.top =  coord_testing[i][1];
             i = i + 1;
         });
 
