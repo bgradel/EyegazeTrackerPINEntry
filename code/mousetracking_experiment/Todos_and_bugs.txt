@@ -1,0 +1,8 @@
+TODOS
+
+- Go to next page automatically when correct pin is put in
+- Have user be able to set their own pin
+
+Bugs
+
+- Fix rotary dial 
