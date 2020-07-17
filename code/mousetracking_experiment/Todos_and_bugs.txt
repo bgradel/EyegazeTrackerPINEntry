@@ -2,6 +2,9 @@ TODOS
 
 - Go to next page automatically when correct pin is put in
 - Have user be able to set their own pin
+- Add timer
+- Add feature which allows us to know the screen resolution
+
 
 Bugs
 
