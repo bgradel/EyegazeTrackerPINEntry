@@ -1,30 +1,27 @@
 from Layout1 import*
 from Layout2 import*
 from Layout3 import*
-
+from Buttons import*
+from TimeCount import*
 
 class LayoutManager:
 
-    frames = []
-    buttonList = []
+    def __init__(self):
+        self.timer = TimeCounts.getInstance()
+        self.timer.writeToFile("Layout1,")
 
-    def __init__(self,frames,buttonList):
-        self.frames = frames
-        self.buttonList = buttonList
+    def getLay1(self, root, obj):
+        but = Buttons(obj,1, self.timer)
+        buttons = but.creatButtons(root)
+        l1 = Layout1(buttons)
 
-    def getLay1(self):
-        l1 = Layout1(self.frames[0], self.buttonList)
-        l1.placeButton()
-        self.frames[0].destroy()
+    def getLay2(self, root, obj, width, height):
+        button2 = Buttons(obj,2, self.timer)
+        buttons = button2.creatButtons(root)
+        l2 = Layout2(buttons,width, height)
 
-    def getLay2(self):
-        l2 = Layout2(self.frames[1], self.buttonList)
-        l2.placeButton()
 
-    def getLay3(self):
-        l3 = Layout3(self.frames[2], self.buttonList)
-        l3.placeButton()
-
-    @classmethod
-    def changeLayout(cls):
-        cls.getLay3()
+    def getLay3(self, root, obj):
+        button3 = Buttons(obj,3, self.timer)
+        buttons = button3.creatButtons(root)
+        l3 = Layout3(buttons)

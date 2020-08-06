@@ -1,0 +1,5 @@
+layoutName,1_deltaSinceLastButtonPressed(sec),2_deltaSinceLastButtonPressed(sec),3_deltaSinceLastButtonPressed(sec),4_deltaSinceLastButtonPressed(sec),WindowDurationPerEnterd(sec),Correct/InccorectOfPinEntry, PINEnteredInput
+Layout1,0.6868167,0.3586672,0.5137307,0.3818086,1.9519708,1,0404
+Layout2,0.8184105,0.5721696,0.5072796,0.5290194,2.4159896,1,0404
+Layout3,0.6429955,0.3838895,0.3813211,0.5052296,1.9134266,1,0404
+ProgramDuration: 6.2814247

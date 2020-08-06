@@ -1,13 +1,21 @@
 import random
 from layouts.LayoutManager import*
 from Tkinter import *
+from Window import *
 
 class Pin:
     pin = "0404"
     entry = ""
+    root = None
 
     @classmethod
-    def checkPin(cls, pin):
+    def getEntry(cls):
+        value = cls.entry
+        cls.entry = ""
+        return value
+
+    @classmethod
+    def checkPins(cls, pin):
         return cls.pin == pin
 
     @classmethod
@@ -21,7 +29,7 @@ class Pin:
     @classmethod
     def append(cls,num):
         cls.entry = cls.entry + str(num)
-        cls.checkPin()
+        return cls.checkPin()
 
     @classmethod
     def checkPin(cls):
@@ -29,9 +37,10 @@ class Pin:
         print cls.entry
         if len(cls.entry) == 4:
             if cls.entry == cls.pin:
-                cls.entry = ""
+                print "you got it!"
+                return True
             else:
-                cls.entry = ""
+                print "try again"
                 return False
         else:
             return
