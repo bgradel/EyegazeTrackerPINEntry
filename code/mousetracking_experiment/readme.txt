@@ -26,6 +26,7 @@ In another tab, go to your Netlify account, go to your profile and then go to ap
 Create a personal access code. Copy this code
 Back in the lab.js builder paste the code into the api. You can leave the domain name blank
 You can access all completed experiments from your Netlify account
+Once you have data, you can collect that data by going to Data File, copy the link into the browser and then the csv will download
 
 Other files in folder:
 fullexperiment.csv
