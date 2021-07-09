@@ -63,7 +63,8 @@ processData <- function(datafile, format='csv', labjs_column='labjs-data',
 }
 
 set_lists_to_chars <- function(x) {
-  if(class(x) == 'list') { y <- paste(unlist(x), sep='', collapse=', ');} else { y <- x  }
+  if(class(x) == 'list') { warning(x); y <- paste(unlist(x), sep='', collapse=' ');} else { y <- x  }
+  warning(class(y));
   return(y) 
   
 }

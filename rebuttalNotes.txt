@@ -1,0 +1,8 @@
+1. They may have multiple options but be unaware
+2. If they don't know, it's impossible for us to tell if they can or can't use that option
+
+Existing authentication needs to be made better 
+
+More needs to be added into setup so that it's clear the options that people have available to them. 
+
+People often did not know what authentication solutions they had access to, they could only talk about what they had. 

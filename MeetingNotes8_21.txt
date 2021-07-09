@@ -1,0 +1,20 @@
+Fix informed consent
+
+call it a PIN consistantly 
+
+Text is a little too crowded, between every sentence maybe there should be a line feed
+
+Make it clearer that the instructional pages are instructional, and you aren't meant to type in the PIN yet.
+
+Write end text shorter like bullet points
+
+turn on sticky mouse or mouse emulation before beginning the experiment. Maybe keep reminding them.
+
+Fix weird pictures for the questions at the end.
+
+Need to figure out how to actually visualize and analyze the data.
+
+Submit button should be bigger, more obvious that it NEEDS TO BE PRESSED
+
+
+
